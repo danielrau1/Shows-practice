@@ -1,0 +1,56 @@
+<h1>Home</h1>
+
+<!--<ul *ngIf="users">-->
+  <!--<li *ngFor="let user of users.data" >-->
+<!--<img [src]="user.avatar" >-->
+  <!--<p>-->
+    <!--{{user.first_name}} {{user.last_name}}-->
+  <!--</p>-->
+  <!--</li>-->
+<!--</ul>-->
+
+<div *ngIf="magicians" >
+  <h3><u>The Magicians </u></h3>
+  <u>{{magicians.name}}</u>
+ <br>{{magicians.id}}
+  <br>{{magicians.url}}
+  <br>{{magicians.schedule.time}}
+  <br>{{magicians.schedule.days[0]}}
+<br>{{magicians.genres[1]}}
+  <br>{{magicians._embedded.episodes[1].name}}
+  <ol>
+    <li *ngFor="let episode of magicians._embedded.episodes">
+      {{episode.name}}
+    </li>
+  </ol>
+
+</div>
+
+<div *ngIf="shows">
+  <h3><u>All the shows playing currently</u></h3>
+  <ol>
+    <li *ngFor="let show of shows">
+      Name: {{show.show.name}}
+      <br>Premiered: {{show.show.premiered}}
+          <ul>
+            <u><b>Days airing</b></u>
+            <li *ngFor="let day of show.show.schedule.days">
+                    {{day}}
+            </li>
+          </ul>
+      <br>
+    </li>
+  </ol>
+</div>
+
+
+
+<div *ngIf="theShows">
+  <h3><u>Getting the show names from the array </u></h3>
+  <ol>
+    <li *ngFor="let showi of theShows ">
+         {{showi.namei}}
+      <br>{{showi.urli}}
+    </li>
+  </ol>
+</div>
