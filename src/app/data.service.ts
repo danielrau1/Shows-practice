@@ -8,12 +8,13 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers() {
-    return this.http.get('https://reqres.in/api/users');
-  }
+  // getUsers() {
+  //   return this.http.get('https://reqres.in/api/users');
+  // }
 
-  getMagicians() {
-    return this.http.get('http://api.tvmaze.com/singlesearch/shows?q=the+magicians&embed=episodes');
+  theURL = 'http://api.tvmaze.com/singlesearch/shows?q=the+magicians&embed=episodes';
+  getEpisodes(u) {
+    return this.http.get(u);
   }
   getShows() {
     return this.http.get('http://api.tvmaze.com/schedule?country=US&date=2019-03-21');

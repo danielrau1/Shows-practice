@@ -54,3 +54,34 @@
     </li>
   </ol>
 </div>
+
+
+<div *ngIf="allShows">
+  <h3><u>Getting the episodes for the shows in the array </u></h3>
+  <ol>
+    <li *ngFor="let show of allShows ">
+      {{show.name}}<br><u>Episodes</u>
+      <ol>
+        <li *ngFor="let episode of show._embedded.episodes">
+          {{episode.name}}<br>
+        </li>
+      </ol>
+
+    </li>
+  </ol>
+</div>
+
+
+
+<input type="text" id="showBox">
+<button (click)="fetchEpisodes()" >Search shows's episodes</button>
+
+<div *ngIf="episodes">
+  <br><u>{{episodes.name}}</u><br>
+  <ol>
+    <li *ngFor="let episode of episodes._embedded.episodes">
+      {{episode.name}}<br>
+    </li>
+  </ol>
+
+</div>
