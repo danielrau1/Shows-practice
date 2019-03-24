@@ -9,79 +9,108 @@
   <!--</li>-->
 <!--</ul>-->
 
-<div *ngIf="magicians" >
-  <h3><u>The Magicians </u></h3>
-  <u>{{magicians.name}}</u>
- <br>{{magicians.id}}
-  <br>{{magicians.url}}
-  <br>{{magicians.schedule.time}}
-  <br>{{magicians.schedule.days[0]}}
-<br>{{magicians.genres[1]}}
-  <br>{{magicians._embedded.episodes[1].name}}
-  <ol>
-    <li *ngFor="let episode of magicians._embedded.episodes">
-      {{episode.name}}
-    </li>
-  </ol>
+<!--<div *ngIf="magicians" >-->
+  <!--<h3><u>The Magicians </u></h3>-->
+  <!--<u>{{magicians.name}}</u>-->
+ <!--<br>{{magicians.id}}-->
+  <!--<br>{{magicians.url}}-->
+  <!--<br>{{magicians.schedule.time}}-->
+  <!--<br>{{magicians.schedule.days[0]}}-->
+<!--<br>{{magicians.genres[1]}}-->
+  <!--<br>{{magicians._embedded.episodes[1].name}}-->
+  <!--<ol>-->
+    <!--<li *ngFor="let episode of magicians._embedded.episodes">-->
+      <!--{{episode.name}}-->
+    <!--</li>-->
+  <!--</ol>-->
+
+<!--</div>-->
+
+<!--<div *ngIf="shows">-->
+  <!--<h3><u>All the shows playing currently</u></h3>-->
+  <!--<ol>-->
+    <!--<li *ngFor="let show of shows">-->
+      <!--Name: {{show.show.name}}-->
+      <!--<br>Premiered: {{show.show.premiered}}-->
+          <!--<ul>-->
+            <!--<u><b>Days airing</b></u>-->
+            <!--<li *ngFor="let day of show.show.schedule.days">-->
+                    <!--{{day}}-->
+            <!--</li>-->
+          <!--</ul>-->
+      <!--<br>-->
+    <!--</li>-->
+  <!--</ol>-->
+<!--</div>-->
+
+
+
+<!--<div *ngIf="theShows">-->
+  <!--<h3><u>Getting the show names from the array </u></h3>-->
+  <!--<ol>-->
+    <!--<li *ngFor="let showi of theShows ">-->
+         <!--{{showi.namei}}-->
+      <!--<br>{{showi.urli}}-->
+    <!--</li>-->
+  <!--</ol>-->
+<!--</div>-->
+
+
+<!--<div *ngIf="allShows">-->
+  <!--<h3><u>Getting the episodes for the shows in the array </u></h3>-->
+  <!--<ol>-->
+    <!--<li *ngFor="let show of allShows ">-->
+      <!--{{show.name}}<br><u>Episodes</u>-->
+      <!--<ol>-->
+        <!--<li *ngFor="let episode of show._embedded.episodes">-->
+          <!--{{episode.name}}<br>-->
+        <!--</li>-->
+      <!--</ol>-->
+
+    <!--</li>-->
+  <!--</ol>-->
+<!--</div>-->
+
+
+<!--<h3><u>Input a show and get its episodes</u></h3>-->
+<!--<input type="text" id="showBox">-->
+<!--<button (click)="fetchEpisodes()" >Search shows's episodes</button>-->
+
+<!--<div id="d1">-->
+
+<!--</div>-->
+
+<!--<div *ngIf="episodes">-->
+  <!--<br><u>{{episodes.name}}</u><br>-->
+  <!--<ol>-->
+    <!--<li *ngFor="let episode of episodes._embedded.episodes" (click)="ep(episode)">-->
+      <!--{{episode.name}}<br>-->
+      <!--&lt;!&ndash;<img src="{{episode.image.medium}}"></span><br>&ndash;&gt;-->
+      <!--&lt;!&ndash;{{episode.url}}&ndash;&gt;-->
+    <!--</li>-->
+  <!--</ol>-->
+
+<!--</div>-->
+
+
+<h3><u>Input keywords and get shows</u></h3>
+<input type="text" id="wordBox">
+<button (click)="fetchShows()" >Search shows's episodes</button>
+
+<div *ngIf="fetchShowsArray">
+<br>
+<ol>
+<li *ngFor="let fetchShow of fetchShowsArray">
+{{fetchShow.show.name}}
+
+</li>
+</ol>
 
 </div>
 
-<div *ngIf="shows">
-  <h3><u>All the shows playing currently</u></h3>
-  <ol>
-    <li *ngFor="let show of shows">
-      Name: {{show.show.name}}
-      <br>Premiered: {{show.show.premiered}}
-          <ul>
-            <u><b>Days airing</b></u>
-            <li *ngFor="let day of show.show.schedule.days">
-                    {{day}}
-            </li>
-          </ul>
-      <br>
-    </li>
-  </ol>
-</div>
 
+<form action="/about" method="get">
+  <input type="text"  >
+  <input type="submit" >
 
-
-<div *ngIf="theShows">
-  <h3><u>Getting the show names from the array </u></h3>
-  <ol>
-    <li *ngFor="let showi of theShows ">
-         {{showi.namei}}
-      <br>{{showi.urli}}
-    </li>
-  </ol>
-</div>
-
-
-<div *ngIf="allShows">
-  <h3><u>Getting the episodes for the shows in the array </u></h3>
-  <ol>
-    <li *ngFor="let show of allShows ">
-      {{show.name}}<br><u>Episodes</u>
-      <ol>
-        <li *ngFor="let episode of show._embedded.episodes">
-          {{episode.name}}<br>
-        </li>
-      </ol>
-
-    </li>
-  </ol>
-</div>
-
-
-
-<input type="text" id="showBox">
-<button (click)="fetchEpisodes()" >Search shows's episodes</button>
-
-<div *ngIf="episodes">
-  <br><u>{{episodes.name}}</u><br>
-  <ol>
-    <li *ngFor="let episode of episodes._embedded.episodes">
-      {{episode.name}}<br>
-    </li>
-  </ol>
-
-</div>
+</form>

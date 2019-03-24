@@ -8,7 +8,11 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+
+  constructor(private data: DataService, private http: HttpClient) {
+  }
   users: Object;
+
   magicians: Object;
   shows: Object;
   theShows = [{namei: 'The Magicians', urli: ''}, {namei: 'Busy Tonight', urli: ''}];
@@ -19,22 +23,23 @@ allShows = [];
 
 inputShow = '';
 url = '';
-episodes = Object;
+episodes: Object;
 
-  constructor(private data: DataService, private http: HttpClient) {
-  }
+keyWords = '';
+fetchShowsArray = [];
 
+about = '/about';
   ngOnInit() {
     // Episodes of the Magicians
     this.data.getEpisodes('http://api.tvmaze.com/singlesearch/shows?q=the+magicians&embed=episodes').subscribe(data1 => {
       this.magicians = data1;
-      console.log(this.magicians);
+      // console.log(this.magicians);
     });
 
     // All Shows airing currently
     this.data.getShows().subscribe(data2 => {
       this.shows = data2;
-      console.log(this.shows);
+      // console.log(this.shows);
     });
 
 
@@ -46,16 +51,15 @@ episodes = Object;
 
       this.data.getEpisodes(this.theShows[i].urli).subscribe(data1 => {
         this.showFile = data1;
-        console.log(this.showFile);
+       // console.log(this.showFile);
         this.allShows.push(this.showFile);
       });
 
     }
-    console.log(this.allShows);
-
-  // Input: import the episodes of the input show
+   // console.log(this.allShows);
 
   }
+  // Input: import the episodes of the input show
 fetchEpisodes() {
     this.inputShow = document.getElementById('showBox').value;
     this.inputShow = this.inputShow.toLowerCase();
@@ -66,7 +70,29 @@ fetchEpisodes() {
       this.episodes = data1;
       console.log(this.episodes);
     });
-
-
-};
 }
+
+// To output in the div specific elements of the episode being clicked
+  ep(episode) {
+
+    console.log(episode.name);
+    document.getElementById('d1').innerHTML = episode.name + '<br>' +
+       '<img src=' + episode.image.medium + '>' +
+       '<br>' + episode.url +
+     '<br><a href=' + this.about + ' >About</a>';
+  }
+
+
+  // Fetch the shows based on the keywords
+  fetchShows() {
+    this.keyWords = document.getElementById('wordBox').value;
+    this.url = 'http://api.tvmaze.com/search/shows?q=' + this.keyWords;
+
+    this.data.getShows2(this.url).subscribe( data3 => {
+      this.fetchShowsArray = data3;
+      console.log(this.fetchShowsArray);
+    });
+  }
+
+}
+
